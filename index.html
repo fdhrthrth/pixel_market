@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>集市-online · 乡土中国版的集市经营插件｜论坛里的宋代市井小游戏</title>
+    <meta
+      name="description"
+      content="集市-online v2.12.6（作者 dcve）是内嵌在论坛里的宋代市井风集市经营插件：64px 瓦片地图引擎、村长圈地出租、积分与金币互通、交子铺存贷、铁匠铺熔炉与黑市，122 项像素素材随插件发布。"
+    />
+    <meta name="keywords" content="集市插件, 像素集市, 论坛小游戏, 宋代市井, 集市经营, 交子铺, 圈地出租" />
+    <meta name="theme-color" content="#fbf6ec" />
+    <meta property="og:title" content="集市-online · 一款乡土中国版的集市插件" />
+    <meta
+      property="og:description"
+      content="想暴富，先租铺。把论坛的一角划成宋代市井：圈地、起铺、上货、存交子。瓦片地图引擎 + 木框羊皮纸 HUD，122 项素材全部随插件发布。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/img/chanpin.png" />
+    <link rel="icon" href="./assets/img/icons/pixel_market_icon_coin.png" sizes="128x128" />
+    <link rel="preload" as="image" href="./assets/img/chanpin.png" fetchpriority="high" />
+    <link rel="stylesheet" href="./assets/css/site.css" />
+  </head>
+
+  <body>
+    <!-- ============================ 顶栏 ============================ -->
+    <header class="topnav">
+      <a class="brand" href="#top">
+        <img class="brand__mark pixel" src="./assets/img/logo.png" alt="集市插件木招牌" width="32" height="32" />
+        <span class="brand__name">集市online</span>
+        <span class="brand__sub">v1.2.0</span>
+      </a>
+
+      <nav aria-label="主导航">
+        <ul class="topnav__links">
+          <li><a href="#map">地图</a></li>
+          <li><a href="#play">开张</a></li>
+          <li><a href="#economy">钱法</a></li>
+          <li><a href="#plots">铺位</a></li>
+          <li><a href="#biz">营生</a></li>
+          <li><a href="#art">素材</a></li>
+          <li><a href="#village">村长</a></li>
+          <li><a href="#install">安装</a></li>
+          <li><a href="#faq">答疑</a></li>
+        </ul>
+      </nav>
+
+      <div class="topnav__cta">
+        <a class="btn btn--primary" href="https://github.com/fdhrthrth/pixel_market/releases/download/v1.2.0/jishi.zip">下载插件</a>
+        <button class="topnav__burger" type="button" aria-label="展开菜单" aria-expanded="false" aria-controls="mobile-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div id="mobile-menu" hidden>
+      <nav aria-label="移动导航">
+        <ul>
+          <li><a href="#map">瓦片地图</a></li>
+          <li><a href="#play">四步开张</a></li>
+          <li><a href="#economy">钱法与交子铺</a></li>
+          <li><a href="#plots">铺位与货架</a></li>
+          <li><a href="#biz">熔炉与黑市</a></li>
+          <li><a href="#art">素材清单</a></li>
+          <li><a href="#npc">街坊与声息</a></li>
+          <li><a href="#village">村长后台</a></li>
+          <li><a href="#cleaner">散场清理</a></li>
+          <li><a href="#install">安装与下载</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main id="top">
+      <!-- ============================ Hero ============================ -->
+      <section class="hero" aria-labelledby="hero-title">
+        <a class="hero__badge" href="https://github.com/fdhrthrth/pixel_market" target="_blank" rel="noreferrer noopener">
+          <span class="dot" aria-hidden="true"></span>
+          <span>bbs1定制 · 宋代市井风集市经营小游戏</span>
+        </a>
+
+        <h1 id="hero-title">
+          <span class="l1">一款乡土中国版的</span>
+          <span class="grad">集市插件</span>
+        </h1>
+
+        <p class="hero__desc">
+          在你自己的站里圈一块地：玩家租铺上货，交子铺存钱生息，亥时一到，自动散集。
+        </p>
+
+        <p class="hero__slogan">想暴富，先租铺</p>
+        <p class="hero__byline">作者 <b>dcve</b></p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://github.com/fdhrthrth/pixel_market/releases/download/v1.2.0/jishi.zip">
+            <span class="btn__ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+              </svg>
+            </span>
+            下载 jishi.zip
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/fdhrthrth/pixel_market" target="_blank" rel="noreferrer noopener">
+            <span class="btn__ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+              </svg>
+            </span>
+            GitHub 仓库
+          </a>
+          <a class="btn btn--ghost" href="#map">看它怎么铺开</a>
+        </div>
+        <p class="hero__note">单文件插件 9,455 行 · SQLite / MySQL / PostgreSQL 通吃 · 零外部依赖</p>
+
+        <!-- 宣传图 + SVG 动效层 -->
+        <div class="hero__stage" data-parallax-root>
+          <figure class="hero__shot frame frame--wood frame--join" data-reveal>
+            <img
+              src="./assets/img/chanpin.png"
+              alt="集市宣传图：宋代市井风格的像素集市鸟瞰，中央一棵大槐树，四周分布鲜肉摊、小吃摊、蔬菜摊、书摊与布鞋摊，乡邻挑担往来"
+              width="1280"
+              height="720"
+            />
+
+            <svg class="hero__overlay" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <!-- 云 -->
+              <g class="cloud" style="animation-duration: 58s">
+                <g fill="#fffdf7" opacity="0.46">
+                  <ellipse cx="120" cy="86" rx="58" ry="17" />
+                  <ellipse cx="158" cy="76" rx="40" ry="15" />
+                  <ellipse cx="86" cy="78" rx="30" ry="12" />
+                </g>
+              </g>
+              <g class="cloud" style="animation-duration: 78s; animation-delay: -34s">
+                <g fill="#fffdf7" opacity="0.3">
+                  <ellipse cx="300" cy="44" rx="72" ry="15" />
+                  <ellipse cx="352" cy="36" rx="44" ry="13" />
+                </g>
+              </g>
+              <!-- 飞鸟 -->
+              <g class="bird" style="animation-duration: 21s">
+                <g stroke="#3a2a1c" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7">
+                  <path class="wing" d="M120 120c8-9 16-9 24 0" />
+                  <path class="wing" style="animation-delay: -120ms" d="M144 120c8-9 16-9 24 0" />
+                </g>
+              </g>
+              <g class="bird" style="animation-duration: 27s; animation-delay: -9s">
+                <g stroke="#3a2a1c" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.48">
+                  <path class="wing" style="animation-delay: -260ms" d="M120 168c6-7 13-7 19 0" />
+                  <path class="wing" style="animation-delay: -380ms" d="M139 168c6-7 13-7 19 0" />
+                </g>
+              </g>
+              <!-- 槐树落叶 -->
+              <g>
+                <rect class="leaf" x="612" y="150" width="9" height="9" rx="2" fill="#8fae5d" style="animation-delay: -1s" />
+                <rect class="leaf" x="668" y="128" width="7" height="7" rx="2" fill="#c9a227" style="animation-delay: -3.4s" />
+                <rect class="leaf" x="590" y="176" width="8" height="8" rx="2" fill="#7f9f57" style="animation-delay: -5.2s" />
+                <rect class="leaf" x="700" y="160" width="6" height="6" rx="2" fill="#a8321f" style="animation-delay: -2.2s" />
+                <rect class="leaf" x="640" y="140" width="7" height="7" rx="2" fill="#8fae5d" style="animation-delay: -6.1s" />
+              </g>
+              <!-- 灯笼暖光 -->
+              <circle class="glow" cx="146" cy="140" r="26" fill="#f5c65a" opacity="0.4" />
+              <circle class="glow" cx="1132" cy="140" r="26" fill="#f5c65a" opacity="0.4" style="animation-delay: -1.4s" />
+              <!-- 小吃摊炊烟 -->
+              <g fill="#fffdf7">
+                <circle class="smoke" cx="812" cy="238" r="9" opacity="0" />
+                <circle class="smoke" cx="820" cy="238" r="7" opacity="0" style="animation-delay: -1.3s" />
+                <circle class="smoke" cx="806" cy="238" r="8" opacity="0" style="animation-delay: -2.6s" />
+              </g>
+            </svg>
+          </figure>
+
+          <div class="hero__chips" data-reveal>
+            <span class="tag tag--gold">64px 瓦片 · 8 种地皮</span>
+            <span class="tag tag--jade">地图最大 200×200 格</span>
+            <span class="tag">122 项素材随包发布</span>
+            <span class="tag">22 张数据表</span>
+          </div>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span>辰 时 开 市</span>
+          <i></i>
+        </div>
+      </section>
+
+      <!-- ============================ 数据带 ============================ -->
+      <section class="stats" aria-label="关键数字">
+        <ul class="sheet stats__grid" data-reveal>
+          <li class="stat">
+            <p class="stat__num"><span data-count="122">122</span><small>项</small></p>
+            <p class="stat__label">素材白名单：118 张像素图 + 2 段音乐 + 2 份清单，合计约 8.9 MB</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num"><span data-count="64">64</span><small>格见方</small></p>
+            <p class="stat__label">默认模板 48×32 格；集市边长可在 8 到 200 格之间自定义</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num"><span data-count="16">16</span><small>个页签</small></p>
+            <p class="stat__label">村长后台从总览到审计日志一应俱全，另有 41 个前台接口</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num"><span data-count="960">960</span><small>×540</small></p>
+            <p class="stat__label">画布视口按整页等比缩放，像素不插值，地砖不糊边</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================ 地图 ============================ -->
+      <section class="section" id="map" aria-labelledby="map-title">
+        <div class="split">
+          <div class="split__copy">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__mark" aria-hidden="true">壹</span>
+              <span>瓦片拼接地图引擎</span>
+            </p>
+            <h2 class="h2" id="map-title" data-reveal="text">一块空地，<em>一格一格</em>铺成一座集市</h2>
+            <p class="lead" data-reveal="text">
+              地面由 64px 瓦片无缝拼接，草地、泥地、小径、街道、青石板、青苔、农田土、胡桃木地板各成一式。
+              物件按底边中心格定位，y-sort 精确遮挡——树冠压住屋檐，货筐挡住人脚，谁在前谁在后，一目了然。
+            </p>
+            <ul class="hud" data-reveal style="margin-top: var(--s-8)">
+              <li class="hud__row">
+                <img class="pixel" src="./assets/img/icons/pixel_market_icon_map.png" alt="" width="26" height="26" />
+                <span class="hud__label">寻路</span>
+                <span class="hud__val">A* 八向 · 防切角</span>
+              </li>
+              <li class="hud__row">
+                <img class="pixel" src="./assets/img/icons/pixel_market_icon_setting.png" alt="" width="26" height="26" />
+                <span class="hud__label">碰撞</span>
+                <span class="hud__val">矩形 + 圆形</span>
+              </li>
+              <li class="hud__row">
+                <img class="pixel" src="./assets/img/icons/pixel_market_icon_backpack.png" alt="" width="26" height="26" />
+                <span class="hud__label">物件上限</span>
+                <span class="hud__val">默认 800 · 硬顶 2000</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="split__media">
+            <div class="stage" id="scene-map" data-scene data-reveal>
+              <div class="stage__bar">
+                <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+                <span class="stage__name">集市全图 · 13×8 格示意</span>
+                <button class="stage__replay" type="button" data-replay="scene-map">重播建集</button>
+              </div>
+
+              <div style="position: relative">
+                <svg viewBox="0 0 900 560" role="img" aria-label="动画演示：瓦片一格一格铺开成街道与广场，随后大槐树、摊位、水井、灯笼与乡邻依次落位，有人在街上走起来">
+                  <defs>
+                    <radialGradient id="lanternLight" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#f7c85a" stop-opacity="0.8" />
+                      <stop offset="100%" stop-color="#f7c85a" stop-opacity="0" />
+                    </radialGradient>
+                  </defs>
+
+                  <!-- 无 JS 时的素底 -->
+                  <rect x="60" y="40" width="780" height="480" rx="8" fill="#e7dcc3" />
+                  <!-- 地面由脚本按 13×8 网格逐格铺开 -->
+                  <g data-tiles></g>
+
+                  <!-- 物件：按 y-sort 由远及近 -->
+                  <g data-objects>
+                    <g class="obj-in" style="--at: 520ms">
+                      <image href="./assets/img/props/pixel_market_tree_locust.png" x="66" y="96" width="180" height="180" />
+                    </g>
+                    <g class="obj-in" style="--at: 620ms">
+                      <image href="./assets/img/shops/pixel_market_shop_canopy.png" x="286" y="96" width="180" height="180" />
+                    </g>
+                    <g class="obj-in" style="--at: 720ms">
+                      <image href="./assets/img/shops/pixel_market_shop_medicine.png" x="508" y="96" width="180" height="180" />
+                    </g>
+                    <g class="obj-in" style="--at: 810ms">
+                      <image href="./assets/img/props/pixel_market_prop_stone_table.png" x="722" y="156" width="120" height="120" />
+                    </g>
+                    <g class="obj-in" style="--at: 900ms">
+                      <image href="./assets/img/npcs/pixel_market_npc_stand_wait.png" x="676" y="186" width="90" height="90" />
+                    </g>
+                    <g class="obj-in" style="--at: 990ms">
+                      <image href="./assets/img/animals/pixel_market_animal_donkey.png" x="192" y="156" width="120" height="120" />
+                    </g>
+                    <g class="obj-in" style="--at: 1080ms">
+                      <image href="./assets/img/props/pixel_market_prop_well.png" x="636" y="156" width="120" height="120" />
+                    </g>
+                    <g class="obj-in" style="--at: 1170ms">
+                      <circle cx="452" cy="228" r="48" fill="url(#lanternLight)" class="glow" />
+                      <image href="./assets/img/props/pixel_market_prop_lantern_post.png" x="424" y="190" width="56" height="86" />
+                    </g>
+                    <g class="obj-in" style="--at: 1280ms">
+                      <image href="./assets/img/shops/pixel_market_shop_tea.png" x="106" y="336" width="180" height="180" />
+                    </g>
+                    <g class="obj-in" style="--at: 1370ms">
+                      <image href="./assets/img/shops/pixel_market_shop_tavern.png" x="556" y="336" width="180" height="180" />
+                    </g>
+                    <g class="obj-in" style="--at: 1460ms">
+                      <image href="./assets/img/decor/pixel_market_prop_haystack.png" x="352" y="396" width="120" height="120" />
+                    </g>
+                    <g class="obj-in" style="--at: 1550ms">
+                      <image href="./assets/img/npcs/pixel_market_npc_sit_a.png" x="296" y="436" width="80" height="80" />
+                    </g>
+                    <g class="obj-in" style="--at: 1640ms">
+                      <image href="./assets/img/animals/pixel_market_animal_cat.png" x="512" y="456" width="60" height="60" class="bob" />
+                    </g>
+                    <g class="obj-in" style="--at: 1730ms">
+                      <image href="./assets/img/decor/pixel_market_prop_bush_flower.png" x="798" y="452" width="60" height="60" />
+                    </g>
+                    <!-- 酒肆炊烟 -->
+                    <g fill="#fffdf7">
+                      <circle class="smoke" cx="646" cy="352" r="8" opacity="0" />
+                      <circle class="smoke" cx="654" cy="352" r="6" opacity="0" style="animation-delay: -1.4s" />
+                      <circle class="smoke" cx="640" cy="352" r="7" opacity="0" style="animation-delay: -2.8s" />
+                    </g>
+                  </g>
+                </svg>
+
+                <!-- 赶集的队伍：一横排沿中间街道从左向右走 -->
+                <div class="sprite sprite--1" style="background-image: url('./assets/img/npcs/pixel_market_npc_vendor_sheet.png')" role="img" aria-label="货郎走向集市"></div>
+                <div class="sprite sprite--2" style="background-image: url('./assets/img/npcs/pixel_market_npc_woman_sheet.png')" role="img" aria-label="挎篮妇人走向集市"></div>
+                <div class="sprite sprite--3" style="background-image: url('./assets/img/chars/pixel_market_char_male_sheet.png')" role="img" aria-label="玩家（男士）走向集市"></div>
+                <div class="sprite sprite--4" style="background-image: url('./assets/img/chars/pixel_market_char_female_sheet.png')" role="img" aria-label="玩家（女士）走向集市"></div>
+
+                <!-- 游戏内 HUD 复刻 -->
+                <div class="mock-hud" aria-hidden="true">
+                  <div class="mock-hud__ticker">集市快报 · 北街二号铺今日换了新样式，围观的人比昨日多了三成</div>
+                  <div class="mock-hud__keys">
+                    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>E</kbd>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 四步开张 ============================ -->
+      <section class="section" id="play" aria-labelledby="play-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">贰</span>
+            <span>从进来到开张</span>
+          </p>
+          <h2 class="h2" id="play-title" data-reveal="text">四步<em>开张</em>，剩下的交给街坊</h2>
+          <p class="lead" data-reveal="text">
+            第一次进集市只问一件事：性别。名字沿用论坛用户名，不另注册一套。
+            之后每一步都有明确去处——挑一块地、选一间样式、确认租赁，货就能上架。
+          </p>
+        </header>
+
+        <div class="split">
+          <div class="split__copy" data-reveal>
+            <ol class="steps">
+              <li>
+                <h4>开市</h4>
+                <p>村长把地图画到位，地皮满 64 格、物件至少 1 个，保存那一刻集市自动开张；没达标的日子，玩家只看到一扇贴了酒楼图样的门。</p>
+              </li>
+              <li>
+                <h4>认个门牌</h4>
+                <p>首次进入只选<span class="term">男士 / 女士</span>两尊形象，头像与站点用户名直接同步，金币从 0 起步。</p>
+              </li>
+              <li>
+                <h4>圈地起铺</h4>
+                <p>村长在空地上拖框选 2~12 格，写明摊位名称、用途标签与日租金（预设 10 / 20 / 30 / 50）。模板自带六块街面铺位：北街一二三号（杂货、茶食、布匹）、南街一二三号（书画、早点、酒肆）。</p>
+              </li>
+              <li>
+                <h4>上货成交</h4>
+                <p>租下铺位后从 13 种样式里挑一间，货摆上货架；别人点开你的摊就能拍下，卡片以商品形式在帖子里流转。</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="split__media">
+            <div class="frame frame--wood frame--join" id="scene-dialog" data-scene data-reveal style="padding: var(--card-pad)">
+              <div class="dialog">
+                <div class="dialog__head">
+                  <img class="pixel" src="./assets/img/npcs/pixel_market_npc_vendor_face.png" alt="货郎头像" width="56" height="56" />
+                  <div>
+                    <p class="dialog__name">货郎</p>
+                    <p class="dialog__role">游荡在南街 · 走南闯北第三年</p>
+                  </div>
+                </div>
+                <p class="dialog__line" data-line="1">「集市这几天可热闹了，听说东街又新开了铺子。」</p>
+                <p class="dialog__line" data-line="2">「要我说啊，商品卡片这东西，买对了比金子还值。」</p>
+                <p class="dialog__line" data-line="3">「掌柜的，慢慢逛，别踩着我家鹅。」<span class="caret" aria-hidden="true"></span></p>
+                <span class="dialog__go">▼ 攀谈</span>
+              </div>
+
+              <ul class="hud" style="margin-top: var(--s-5)">
+                <li class="hud__row">
+                  <img class="pixel" src="./assets/img/icons/pixel_market_icon_notice.png" alt="" width="26" height="26" />
+                  <span class="hud__label">台词</span>
+                  <span class="hud__val">后台可配 · 每类 12 句</span>
+                </li>
+                <li class="hud__row">
+                  <img class="pixel" src="./assets/img/icons/pixel_market_icon_shop.png" alt="" width="26" height="26" />
+                  <span class="hud__label">交互</span>
+                  <span class="hud__val">走近按 E · 点头顶气泡</span>
+                </li>
+                <li class="hud__row">
+                  <img class="pixel" src="./assets/img/icons/pixel_market_icon_exchange.png" alt="" width="26" height="26" />
+                  <span class="hud__label">气泡</span>
+                  <span class="hud__val">租铺 / 逛货柜 / 信用社 / 黑市</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 钱法 ============================ -->
+      <section class="section" id="economy" aria-labelledby="eco-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">叁</span>
+            <span>积分 ⇄ 金币 · 交子铺</span>
+          </p>
+          <h2 class="h2" id="eco-title" data-reveal="text">论坛的<em>积分</em>，能换成集市上的铜钱</h2>
+          <p class="lead" data-reveal="text">
+            两套货币打通，但口子攥在后台手里：基准汇率、买卖价差、每日波动、快捷兑换额度，全是一行行整数。
+            存钱生息、青苗借贷，则归<span class="term">交子铺</span>的掌柜管。
+          </p>
+        </header>
+
+        <div class="grid-2">
+                    <div class="stage" id="scene-coin" data-scene data-reveal>
+            <div class="stage__bar">
+              <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+              <span class="stage__name">兑换通道</span>
+              <button class="stage__replay" type="button" data-replay="scene-coin">重播</button>
+            </div>
+            <svg viewBox="0 0 560 300" role="img" aria-label="动画演示：论坛积分与集市金币沿双向通道互相兑换，金币在流通中翻转">
+              <!-- 通道 -->
+              <path d="M164 106 C 250 42, 320 42, 406 106" fill="none" stroke="#b3831f" stroke-width="3" stroke-linecap="round" class="flow" />
+              <path d="M406 190 C 320 254, 250 254, 164 190" fill="none" stroke="#5d7a4f" stroke-width="3" stroke-linecap="round" class="flow" style="animation-delay: -0.55s" />
+              <text x="285" y="34" text-anchor="middle" font-size="13.5" fill="#7d5a12">积分 → 金币</text>
+              <text x="285" y="278" text-anchor="middle" font-size="13.5" fill="#40573a">金币 → 积分</text>
+
+              <!-- 论坛积分 -->
+              <g class="obj-in" style="--at: 80ms">
+                <circle cx="104" cy="148" r="58" fill="#eef2e6" stroke="#5d7a4f" stroke-width="2.5" />
+                <circle cx="104" cy="148" r="48" fill="none" stroke="#5d7a4f" stroke-width="1" stroke-dasharray="3 5" opacity="0.55" />
+                <image href="./assets/img/icons/pixel_market_icon_points.png" x="68" y="112" width="72" height="72" style="image-rendering: pixelated" />
+                <text x="104" y="228" text-anchor="middle" font-size="14" fill="#40573a">论坛积分</text>
+              </g>
+
+              <!-- 集市金币 -->
+              <g class="obj-in" style="--at: 220ms">
+                <circle cx="466" cy="148" r="58" fill="#f6ecd2" stroke="#b3831f" stroke-width="2.5" />
+                <circle cx="466" cy="148" r="48" fill="none" stroke="#b3831f" stroke-width="1" stroke-dasharray="3 5" opacity="0.55" />
+                <g class="coin-spin">
+                  <image href="./assets/img/icons/pixel_market_icon_coin.png" x="430" y="112" width="72" height="72" style="image-rendering: pixelated" />
+                </g>
+                <text x="466" y="228" text-anchor="middle" font-size="14" fill="#7d5a12">集市金币</text>
+              </g>
+
+              <!-- 流通中的钱 -->
+              <g fill="#b3831f">
+                <circle class="ride" r="6" />
+                <circle class="ride" r="4.5" style="animation-delay: -1.3s" />
+              </g>
+              <g fill="#5d7a4f">
+                <circle class="ride2" r="6" />
+                <circle class="ride2" r="4.5" style="animation-delay: -1.5s" />
+              </g>
+
+              <!-- 汇率牌 -->
+              <g class="obj-in" style="--at: 420ms">
+                <rect x="228" y="130" width="114" height="38" rx="8" fill="#fffdf7" stroke="rgba(40,28,18,.14)" />
+                <text x="285" y="147" text-anchor="middle" font-size="11" fill="#94866f">基准汇率</text>
+                <text x="285" y="162" text-anchor="middle" font-size="14" fill="#241a12" font-family="Kaiti SC, KaiTi, serif">1 金币 = 10 积分</text>
+              </g>
+            </svg>
+          </div>
+          <div class="stage" id="scene-bank" data-scene data-reveal>
+            <div class="stage__bar">
+              <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+              <span class="stage__name">交子铺 · 柜台上的三张告示</span>
+              <button class="stage__replay" type="button" data-replay="scene-bank">重播</button>
+            </div>
+            <svg viewBox="0 0 560 320" role="img" aria-label="交子铺柜台：两张定期存帖写明 7 天日息 0.5% 与 30 天日息 0.8%，右侧青苗贷额度尺显示底额度 500、每级铺位加 200、封顶 5000">
+              <defs>
+                <linearGradient id="bankPaper" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fdf7e8" />
+                  <stop offset="100%" stop-color="#f0e3c8" />
+                </linearGradient>
+              </defs>
+
+              <!-- 招幌 -->
+              <g class="obj-in" style="--at: 60ms">
+                <path d="M28 26h168l-16-14H44z" fill="#7a5636" />
+                <rect x="40" y="26" width="144" height="44" rx="4" fill="#a8321f" />
+                <rect x="45" y="31" width="134" height="34" rx="2" fill="none" stroke="rgba(253,246,232,.35)" />
+                <text x="112" y="58" text-anchor="middle" font-size="25" fill="#fdf6e8" font-family="Kaiti SC, KaiTi, serif" letter-spacing="4">交子铺</text>
+                <line x1="70" y1="70" x2="70" y2="84" stroke="#7a5636" stroke-width="3" />
+                <line x1="154" y1="70" x2="154" y2="84" stroke="#7a5636" stroke-width="3" />
+              </g>
+
+              <!-- 定期存帖 ×2 -->
+              <g class="obj-in" style="--at: 220ms">
+                <rect x="36" y="86" width="148" height="112" rx="8" fill="url(#bankPaper)" stroke="rgba(122,86,54,.55)" stroke-width="1.5" />
+                <rect x="43" y="93" width="134" height="98" rx="5" fill="none" stroke="rgba(122,86,54,.35)" stroke-dasharray="4 4" />
+                <text x="54" y="112" font-size="12" fill="#6d5f4d">定期存帖</text>
+                <text x="54" y="156" font-size="40" fill="#241a12" font-family="Kaiti SC, KaiTi, serif">7</text>
+                <text x="82" y="156" font-size="17" fill="#5b4a39" font-family="Kaiti SC, KaiTi, serif">天</text>
+                <text x="54" y="182" font-size="15" fill="#40573a">日息 0.5%</text>
+                <g transform="rotate(-12 156 168)">
+                  <circle cx="156" cy="168" r="19" fill="none" stroke="#a8321f" stroke-width="2.4" opacity="0.75" />
+                  <text x="156" y="175" text-anchor="middle" font-size="18" fill="#a8321f" opacity="0.8" font-family="Kaiti SC, KaiTi, serif">存</text>
+                </g>
+              </g>
+
+              <g class="obj-in" style="--at: 340ms">
+                <rect x="194" y="86" width="148" height="112" rx="8" fill="url(#bankPaper)" stroke="rgba(122,86,54,.55)" stroke-width="1.5" />
+                <rect x="201" y="93" width="134" height="98" rx="5" fill="none" stroke="rgba(122,86,54,.35)" stroke-dasharray="4 4" />
+                <text x="212" y="112" font-size="12" fill="#6d5f4d">定期存帖</text>
+                <text x="212" y="156" font-size="40" fill="#241a12" font-family="Kaiti SC, KaiTi, serif">30</text>
+                <text x="256" y="156" font-size="17" fill="#5b4a39" font-family="Kaiti SC, KaiTi, serif">天</text>
+                <text x="212" y="182" font-size="15" fill="#7d5a12">日息 0.8%</text>
+                <g transform="rotate(-12 314 168)">
+                  <circle cx="314" cy="168" r="19" fill="none" stroke="#a8321f" stroke-width="2.4" opacity="0.75" />
+                  <text x="314" y="175" text-anchor="middle" font-size="18" fill="#a8321f" opacity="0.8" font-family="Kaiti SC, KaiTi, serif">息</text>
+                </g>
+              </g>
+
+              <!-- 青苗贷额度尺 -->
+              <g class="obj-in" style="--at: 460ms">
+                <rect x="352" y="86" width="172" height="112" rx="8" fill="#fffdf7" stroke="rgba(40,28,18,.14)" />
+                <text x="366" y="108" font-size="12" fill="#6d5f4d">青苗贷额度</text>
+                <text x="366" y="140" font-size="26" fill="#241a12" font-family="Kaiti SC, KaiTi, serif">1,300</text>
+                <text x="440" y="140" font-size="12" fill="#94866f">/ 封顶 5,000</text>
+
+                <!-- 尺：底额度 + 铺位加成，一路到封顶 -->
+                <rect x="366" y="152" width="144" height="12" rx="6" fill="rgba(40,28,18,.08)" />
+                <rect class="bar-grow-x" x="366" y="152" width="14" height="12" rx="6" fill="#d9ad55" style="--at: 640ms" />
+                <rect class="bar-grow-x" x="380" y="152" width="23" height="12" fill="#b3831f" style="--at: 780ms" />
+                <path class="obj-in" d="M403 148l4-6h-8z" fill="#a8321f" style="--at: 900ms" />
+                <line x1="510" y1="149" x2="510" y2="167" stroke="rgba(40,28,18,.3)" stroke-width="1.5" />
+
+                <text x="366" y="182" font-size="11" fill="#7d5a12">底额度 500</text>
+                <text x="424" y="182" font-size="11" fill="#5b4a39">+ 每级铺位 200</text>
+              </g>
+
+              <!-- 柜台告示 -->
+              <g class="obj-in" style="--at: 980ms" font-size="11.5">
+                <rect x="36" y="214" width="148" height="30" rx="15" fill="#e9efdf" stroke="rgba(93,122,79,.3)" />
+                <text x="110" y="233" text-anchor="middle" fill="#40573a">最低存 100 · 至多 3 张</text>
+
+                <rect x="194" y="214" width="148" height="30" rx="15" fill="#f6ecd2" stroke="rgba(179,131,31,.35)" />
+                <text x="268" y="233" text-anchor="middle" fill="#7d5a12">未到期支取按 0.1% 活期</text>
+
+                <rect x="352" y="214" width="172" height="30" rx="15" fill="#f7e5df" stroke="rgba(168,50,31,.28)" />
+                <text x="438" y="233" text-anchor="middle" fill="#8a2717">日息 1.5% · 7 / 14 / 30 天</text>
+              </g>
+
+              <line x1="36" y1="266" x2="524" y2="266" stroke="rgba(40,28,18,.12)" stroke-width="1.5" />
+              <text x="36" y="288" font-size="12" fill="#94866f">逾期每日 3% 罚息，宽限 3 天后从金币与店铺营收里自动划扣抵债。</text>
+            </svg>
+          </div>
+        </div>
+
+        <ul class="sheet" data-reveal style="grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--grid-gap)">
+          <li>
+            <p class="card__title">基准 1 : 10</p>
+            <p class="card__text">1 金币兑 10 积分起步，可调 0.01~100000；后台备了 1:1 / 1:10 / 1:50 / 1:100 四片预设。</p>
+          </li>
+          <li>
+            <p class="card__title">买卖价差 4%</p>
+            <p class="card__text">玩家买入价恒不低于卖出价的 104%，堵住来回套利的缝；每日还能开 ±5% 的行情波动。</p>
+          </li>
+          <li>
+            <p class="card__title">快捷兑换 200 / 日</p>
+            <p class="card__text">右上角的「兑换」按钮走小额通道，买卖合并计额度；想大额，去信用社找掌柜。</p>
+          </li>
+          <li>
+            <p class="card__title">同事务提交</p>
+            <p class="card__text">台账、积分、金币在一个事务里落库，固定锁序 + 32 位幂等键，重复请求只认一次。</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================ 铺位 ============================ -->
+      <section class="section" id="plots" aria-labelledby="plot-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">肆</span>
+            <span>铺位 · 货架 · 商品卡片</span>
+          </p>
+          <h2 class="h2" id="plot-title" data-reveal="text">等级越高，<em>摊子越大</em></h2>
+          <p class="lead" data-reveal="text">
+            五级铺位逐级放开三件事：能挂多贵的货、能摆几件货、租金按什么系数算。
+            下面是后台「等级参数」的默认值，每一项都可另填。
+          </p>
+        </header>
+
+        <div class="frame frame--wood frame--join" id="scene-levels" data-scene data-reveal style="padding: var(--s-2) var(--s-2) 0">
+          <table class="levels">
+            <caption class="sr-only">铺位等级默认参数</caption>
+            <thead>
+              <tr>
+                <th scope="col">铺位等级</th>
+                <th scope="col">售价上限（金币）</th>
+                <th scope="col">货架位</th>
+                <th scope="col">租金系数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="term">Lv1 · 摊</span></th>
+                <td><span class="lvl-bar" style="--w: 3%"><i></i></span>200</td>
+                <td><span class="lvl-bar" style="--w: 25%"><i></i></span>4 位</td>
+                <td>1.0</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="term">Lv2 · 铺</span></th>
+                <td><span class="lvl-bar" style="--w: 7%"><i></i></span>500</td>
+                <td><span class="lvl-bar" style="--w: 38%"><i></i></span>6 位</td>
+                <td>1.6</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="term">Lv3 · 字号</span></th>
+                <td><span class="lvl-bar" style="--w: 16%"><i></i></span>1,200</td>
+                <td><span class="lvl-bar" style="--w: 50%"><i></i></span>8 位</td>
+                <td>2.4</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="term">Lv4 · 大铺</span></th>
+                <td><span class="lvl-bar" style="--w: 39%"><i></i></span>3,000</td>
+                <td><span class="lvl-bar" style="--w: 63%"><i></i></span>10 位</td>
+                <td>3.5</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="term">Lv5 · 总号</span></th>
+                <td><span class="lvl-bar" style="--w: 100%"><i></i></span>8,000</td>
+                <td><span class="lvl-bar" style="--w: 75%"><i></i></span>12 位</td>
+                <td>5.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-3" style="margin-top: var(--s-8)" data-replay-on-hover>
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-draw style="--at: 0ms" pathLength="1" d="M3 9.5 12 4l9 5.5V20H3z" />
+                <path data-draw style="--at: 260ms" pathLength="1" d="M3 9.5h18" />
+                <rect data-pop style="--at: 420ms" x="9.5" y="13" width="5" height="7" rx="1" pathLength="1" />
+              </svg>
+            </span>
+            <h3 class="card__title">圈地出租</h3>
+            <p class="card__text">拖框选 2~12 格，越界、压铺位、压物件都会被拦下；日租金预设 10 / 20 / 30 / 50，也可以填买断价一次卖断。</p>
+            <div class="card__meta">
+              <span class="tag">招租中</span><span class="tag tag--jade">营业中</span><span class="tag tag--gold">宽限期</span>
+            </div>
+          </article>
+
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico ico--jade">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-draw style="--at: 0ms" pathLength="1" d="M4 6h16M4 12h16M4 18h16" />
+                <circle data-pop style="--at: 300ms" cx="8" cy="6" r="1.8" pathLength="1" />
+                <circle data-pop style="--at: 420ms" cx="14" cy="12" r="1.8" pathLength="1" />
+                <circle data-pop style="--at: 540ms" cx="10" cy="18" r="1.8" pathLength="1" />
+              </svg>
+            </span>
+            <h3 class="card__title">到期也不清空</h3>
+            <p class="card__text">到期先进 3 天宽限期，等级冻结；期满收回，样式、等级与全部卡片封存 30 天，期内重租同一铺位自动恢复。</p>
+            <div class="card__meta"><span class="tag">封存 30 天</span><span class="tag">买断倍数 8</span></div>
+          </article>
+
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico ico--gold">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect data-draw style="--at: 0ms" pathLength="1" x="3.5" y="5" width="17" height="12" rx="2" />
+                <path data-draw style="--at: 240ms" pathLength="1" d="M3.5 9h17" />
+                <path data-pop style="--at: 420ms" pathLength="1" d="M8 13h8" />
+                <path data-draw style="--at: 520ms" pathLength="1" d="M8 20h8" />
+              </svg>
+            </span>
+            <h3 class="card__title">商品卡片</h3>
+            <p class="card__text">标题 2~30 字、公开描述 300 字、徽章三档、每人限购可设；卡片正文 5000 字，购买者才看得到。</p>
+            <div class="card__meta"><span class="tag tag--red">未购买路径不查正文列</span></div>
+          </article>
+
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico ico--ink">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-draw style="--at: 0ms" pathLength="1" d="M4 20V9l8-5 8 5v11" />
+                <path data-draw style="--at: 220ms" pathLength="1" d="M9 20v-6h6v6" />
+                <path data-pop style="--at: 420ms" pathLength="1" d="M12 4v3" />
+              </svg>
+            </span>
+            <h3 class="card__title">样式库</h3>
+            <p class="card__text">13 种铺面样式随插件发布，从布棚杂货摊到灯笼酒肆各有骨架；不想要的样式可在后台整类停用。</p>
+            <div class="card__art">
+              <img class="pixel" src="./assets/img/shops/pixel_market_shop_canopy.png" alt="布棚杂货摊" loading="lazy" />
+              <img class="pixel" src="./assets/img/shops/pixel_market_shop_fabric.png" alt="布匹绣庄" loading="lazy" />
+              <img class="pixel" src="./assets/img/shops/pixel_market_shop_curio.png" alt="书画文玩铺" loading="lazy" />
+              <img class="pixel" src="./assets/img/shops/pixel_market_shop_tavern.png" alt="灯笼酒肆" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle data-draw style="--at: 0ms" pathLength="1" cx="12" cy="12" r="8.5" />
+                <path data-draw style="--at: 260ms" pathLength="1" d="M12 7v5l3.5 2" />
+                <circle data-pop style="--at: 480ms" cx="12" cy="12" r="1.4" pathLength="1" />
+              </svg>
+            </span>
+            <h3 class="card__title">凌晨结算</h3>
+            <p class="card__text">营收先进待结算钱包，次日零点到账；在线玩家零点后的第一次活动即时结清，另有每日任务兜底。</p>
+            <div class="card__meta"><span class="tag">心跳 30 秒</span><span class="tag">75 秒内算「正在逛」</span></div>
+          </article>
+
+          <article class="card" data-reveal data-play-on-view>
+            <span class="ico ico--jade">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse data-draw style="--at: 0ms" pathLength="1" cx="12" cy="7" rx="7" ry="3.2" />
+                <path data-draw style="--at: 240ms" pathLength="1" d="M5 7v10c0 1.8 3.1 3.2 7 3.2s7-1.4 7-3.2V7" />
+                <path data-pop style="--at: 460ms" pathLength="1" d="M9 12.5h6" />
+              </svg>
+            </span>
+            <h3 class="card__title">店主面板</h3>
+            <p class="card__text">总览、商品、营收、买家、流水五页：今日营收、成本、净入、客人、正在逛、累计成交六个指标，配近 14 天曲线。</p>
+            <div class="card__meta"><span class="tag">固定 6 条查询</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================ 营生 ============================ -->
+      <section class="section" id="biz" aria-labelledby="biz-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">伍</span>
+            <span>集市里的其他营生</span>
+          </p>
+          <h2 class="h2" id="biz-title" data-reveal="text">不止摆摊：<em>熔炉</em>、<em>黑市</em>与一纸<em>存帖</em></h2>
+          <p class="lead" data-reveal="text">
+            道具分材料、完整道具与普通三类，品阶一到三星；两到五件材料能在铁匠铺熔成一件好东西，
+            多余的货可以挂进黑市寄卖。
+          </p>
+        </header>
+
+        <div class="grid-2">
+          <div class="stage" id="scene-forge" data-scene data-reveal>
+            <div class="stage__bar">
+              <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+              <span class="stage__name">铁匠铺 · 熔炉环</span>
+              <button class="stage__replay" type="button" data-replay="scene-forge">重播熔合</button>
+            </div>
+            <svg viewBox="0 0 560 320" role="img" aria-label="动画演示：五件材料沿熔炉环依次落位，汇聚到中心熔合成一件完整道具">
+              <defs>
+                <radialGradient id="forgeHeat" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f7c85a" stop-opacity="0.9" />
+                  <stop offset="60%" stop-color="#a8321f" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#a8321f" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <circle cx="280" cy="160" r="120" fill="url(#forgeHeat)" class="glow" />
+              <circle cx="280" cy="160" r="96" fill="none" stroke="rgba(40,28,18,.16)" stroke-width="1.5" stroke-dasharray="4 8" />
+
+              <!-- 五个材料位（顶部起顺时针） -->
+              <g>
+                <g class="obj-in" style="--at: 120ms"><circle cx="280" cy="64" r="26" fill="#fffdf7" stroke="rgba(40,28,18,.18)" /><image href="./assets/img/items/pixel_market_item_scrapscroll.png" x="258" y="42" width="44" height="44" /></g>
+                <g class="obj-in" style="--at: 300ms"><circle cx="371" cy="130" r="26" fill="#fffdf7" stroke="rgba(40,28,18,.18)" /><image href="./assets/img/items/pixel_market_prop_coppercash.png" x="349" y="108" width="44" height="44" /></g>
+                <g class="obj-in" style="--at: 480ms"><circle cx="336" cy="238" r="26" fill="#fffdf7" stroke="rgba(40,28,18,.18)" /><image href="./assets/img/items/pixel_market_prop_driedherbs.png" x="314" y="216" width="44" height="44" /></g>
+                <g class="obj-in" style="--at: 660ms"><circle cx="224" cy="238" r="26" fill="#fffdf7" stroke="rgba(40,28,18,.18)" /><image href="./assets/img/items/pixel_market_prop_earthenjar.png" x="202" y="216" width="44" height="44" /></g>
+                <g class="obj-in" style="--at: 840ms"><circle cx="189" cy="130" r="26" fill="#fffdf7" stroke="rgba(40,28,18,.18)" /><image href="./assets/img/items/pixel_market_item_sealednote.png" x="167" y="108" width="44" height="44" /></g>
+              </g>
+
+              <!-- 中心产物 -->
+              <g class="obj-in" style="--at: 1150ms">
+                <circle cx="280" cy="160" r="46" fill="#f6ecd2" stroke="#b3831f" stroke-width="2" />
+                <image href="./assets/img/items/pixel_market_prop_bambooscroll.png" x="248" y="128" width="64" height="64" />
+                <text x="280" y="232" text-anchor="middle" font-size="13" fill="#7d5a12">竹简书卷 · 二星</text>
+              </g>
+
+              <text x="40" y="298" font-size="13" fill="#94866f">2~5 件材料一格一位，同种可占多格；产物基准价须 ≥ 材料之和 × 1.5，这条红线后台卡着。</text>
+            </svg>
+          </div>
+
+          <div style="display: grid; gap: var(--grid-gap)">
+            <article class="card" data-reveal data-play-on-view>
+              <span class="ico ico--gold">
+                <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path data-draw style="--at: 0ms" pathLength="1" d="M5 19c0-5 3-9 7-9s7 4 7 9" />
+                  <path data-draw style="--at: 240ms" pathLength="1" d="M12 10V4M9 4h6" />
+                  <circle data-pop style="--at: 440ms" cx="12" cy="15" r="2.4" pathLength="1" />
+                </svg>
+              </span>
+              <h3 class="card__title">黑市寄卖</h3>
+              <p class="card__text">道具上架即锁定，单笔 1~99 件、单价最高一亿金币；成交走行锁，手慢了提示「商品已被买走」。村长可整市歇业，在售商品原样保留。</p>
+            </article>
+
+            <article class="card" data-reveal data-play-on-view>
+              <span class="ico">
+                <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect data-draw style="--at: 0ms" pathLength="1" x="4" y="4" width="16" height="16" rx="3" />
+                  <path data-draw style="--at: 240ms" pathLength="1" d="M8.5 12.5l2.5 2.5 5-5.5" />
+                  <circle data-pop style="--at: 480ms" cx="17" cy="7" r="1.6" pathLength="1" />
+                </svg>
+              </span>
+              <h3 class="card__title">村委会签到</h3>
+              <p class="card__text">每日一次，找村委会主事领今日福利：默认一册残破卷轴加两束干药材，最多配 12 条。领取瞬间道具图标会从建筑飞进右上角背包。</p>
+            </article>
+
+            <article class="card" data-reveal data-play-on-view>
+              <span class="ico ico--jade">
+                <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path data-draw style="--at: 0ms" pathLength="1" d="m12 3 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.5 6.7 19.2l1.1-5.9L3.5 9.2l5.9-.8z" />
+                  <circle data-pop style="--at: 420ms" cx="12" cy="11" r="1.6" pathLength="1" />
+                </svg>
+              </span>
+              <h3 class="card__title">道具与品阶</h3>
+              <p class="card__text">预置 18 项道具，一到三星决定图标底色，三星泛金光；单道具堆叠上限 999，背包格子过 99 显示「99+」。</p>
+              <div class="card__art">
+                <img class="pixel" src="./assets/img/items/pixel_market_prop_jadeornament.png" alt="玉佩饰件" loading="lazy" />
+                <img class="pixel" src="./assets/img/items/pixel_market_prop_luopan.png" alt="罗盘" loading="lazy" />
+                <img class="pixel" src="./assets/img/items/pixel_market_prop_handbell.png" alt="青铜手铃" loading="lazy" />
+                <img class="pixel" src="./assets/img/items/pixel_market_prop_fabricsachet.png" alt="织锦香囊" loading="lazy" />
+                <img class="pixel" src="./assets/img/items/pixel_market_prop_wheelbarrow.png" alt="宋式木独轮车" loading="lazy" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 素材 ============================ -->
+      <section class="section" id="art" aria-labelledby="art-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">陆</span>
+            <span>素材清单</span>
+          </p>
+          <h2 class="h2" id="art-title" data-reveal="text">122 项素材，<em>一张一张</em>画出来的</h2>
+          <p class="lead" data-reveal="text">
+            地砖无缝可平铺，人物是 4×4 的步态表，摊位按 3×2 格的骨架对齐碰撞盒。
+            插件里维护着一份素材白名单，站点放一张同名 PNG 就能把图换掉，不用改代码。
+          </p>
+        </header>
+
+        <div class="gal">
+          <ul class="gal__tabs" role="tablist" aria-label="素材分类">
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="true" data-cat="店铺">店铺 13</button></li>
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="false" data-cat="建筑">建筑与装饰</button></li>
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="false" data-cat="人物">人物与动物</button></li>
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="false" data-cat="道具">道具</button></li>
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="false" data-cat="地面">地面</button></li>
+            <li><button class="gal__tab" role="tab" type="button" aria-selected="false" data-cat="图标">HUD 图标</button></li>
+          </ul>
+          <div class="gal__grid" data-gallery-grid></div>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track" data-marquee></div>
+        </div>
+      </section>
+
+      <!-- ============================ 街坊与声息 ============================ -->
+      <section class="section" id="npc" aria-labelledby="npc-title">
+        <div class="split split--flip">
+          <div class="split__copy">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__mark" aria-hidden="true">柒</span>
+              <span>街坊与背景音</span>
+            </p>
+            <h2 class="h2" id="npc-title" data-reveal="text">集市不是空图，<em>有人有狗有鹅</em></h2>
+            <p class="lead" data-reveal="text">
+              五类游荡的——货郎、摊主、挎篮妇人、顽童、老丈，各有各的步速；树下闲坐的、饮茶的老者、驻足张望的钉在原地。
+              编辑器里还能给每类圈定活动范围，出了框就不走。
+            </p>
+            <p class="lead" data-reveal="text" style="margin-top: var(--s-4)">
+              两段音乐随包发布：白日一段主乐，<span class="term">散集</span>一段黄昏调。
+              默认 22 时切到散集，清晨 6 点换回来——音量存在本机，开关在「更多」里。
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--control-gap); margin-top: var(--s-8)">
+              <button class="btn btn--ghost" type="button" data-audio-toggle aria-pressed="false">
+                <span class="btn__ico" aria-hidden="true">
+                  <img class="pixel" src="./assets/img/icons/pixel_market_icon_music_on.png" alt="" width="26" height="26" />
+                </span>
+                <span data-audio-label>听听集市</span>
+              </button>
+              <button class="btn btn--ghost" type="button" data-audio-toggle data-audio-src="./assets/img/bgm/pixel_market_bgm_dusk.mp3" aria-pressed="false">
+                <span class="btn__ico" aria-hidden="true">
+                  <img class="pixel" src="./assets/img/icons/pixel_market_icon_music_off.png" alt="" width="26" height="26" />
+                </span>
+                <span data-audio-label>听听散集</span>
+              </button>
+            </div>
+            <audio id="market-audio" src="./assets/img/bgm/pixel_market_bgm_main.mp3" loop></audio>
+          </div>
+
+          <div class="split__media">
+            <div class="frame frame--wood frame--join" data-reveal style="padding: var(--card-pad)">
+              <ul class="faces">
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_vendor_face.png" alt="货郎" loading="lazy" width="72" height="72" /><span>货郎</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_clerk_face.png" alt="村委会主事" loading="lazy" width="72" height="72" /><span>村委会主事</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_banker_face.png" alt="信用社掌柜" loading="lazy" width="72" height="72" /><span>信用社掌柜</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_elder_face.png" alt="老丈" loading="lazy" width="72" height="72" /><span>老丈</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_child_face.png" alt="顽童" loading="lazy" width="72" height="72" /><span>顽童</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_woman_face.png" alt="挎篮妇人" loading="lazy" width="72" height="72" /><span>挎篮妇人</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_sit_a_face.png" alt="树下闲坐男" loading="lazy" width="72" height="72" /><span>树下闲坐男</span></li>
+                <li><img class="pixel" src="./assets/img/npcs/pixel_market_npc_sit_b_face.png" alt="饮茶老者" loading="lazy" width="72" height="72" /><span>饮茶老者</span></li>
+                <li><img class="pixel" src="./assets/img/chars/pixel_market_char_male_face.png" alt="玩家男性形象" loading="lazy" width="72" height="72" /><span>你（男士）</span></li>
+                <li><img class="pixel" src="./assets/img/chars/pixel_market_char_female_face.png" alt="玩家女性形象" loading="lazy" width="72" height="72" /><span>你（女士）</span></li>
+              </ul>
+
+              <div class="stage" id="scene-animals" data-scene style="margin-top: var(--s-6); box-shadow: none; border: 1px solid var(--hairline)">
+                <div class="stage__bar">
+                  <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+                  <span class="stage__name">街面上的活物</span>
+                </div>
+                <svg viewBox="0 0 620 190" role="img" aria-label="花猫、母鸡、驮货毛驴与白鹅在街面上往复走动">
+                  <rect y="150" width="620" height="40" fill="#e7dcc3" />
+                  <rect y="150" width="620" height="3" fill="rgba(40,28,18,.1)" />
+                  <g class="pace" style="--dist: 420px; animation-duration: 9s">
+                    <image href="./assets/img/animals/pixel_market_animal_cat.png" x="30" y="80" width="70" height="70" />
+                  </g>
+                  <g class="pace" style="--dist: 380px; animation-duration: 12s; animation-delay: -4s">
+                    <image href="./assets/img/animals/pixel_market_animal_chicken.png" x="150" y="96" width="54" height="54" />
+                  </g>
+                  <g class="pace" style="--dist: 300px; animation-duration: 15s; animation-delay: -8s">
+                    <image href="./assets/img/animals/pixel_market_animal_donkey.png" x="290" y="52" width="98" height="98" />
+                  </g>
+                  <g class="pace" style="--dist: 250px; animation-duration: 11s; animation-delay: -2s">
+                    <image href="./assets/img/animals/pixel_market_animal_goose_sheet.png" x="470" y="80" width="70" height="70" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 村长后台 ============================ -->
+      <section class="section" id="village" aria-labelledby="village-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">捌</span>
+            <span>村长体系</span>
+          </p>
+          <h2 class="h2" id="village-title" data-reveal="text">站点管理员，<em>默认就是村长</em></h2>
+          <p class="lead" data-reveal="text">
+            不用先学一套后台：管理员进站即村长，能开市、能圈地、能画地图。
+            村长专属的操作在服务端二次校验，普通玩家一律 403——这条是写进代码注释里的红线。
+          </p>
+        </header>
+
+        <ul class="sheet" data-reveal style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+          <li data-replay-on-hover>
+            <span class="ico ico--ink">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-draw pathLength="1" style="--at: 0ms" d="M4 6h16M4 12h16M4 18h10" />
+                <circle data-pop style="--at: 360ms" cx="18" cy="18" r="3" pathLength="1" />
+              </svg>
+            </span>
+            <h3 class="card__title">自定义地图编辑器</h3>
+            <p class="card__text">素材调色板分 9 个页签，地面连刷、装饰按住连刷、物件可拖可转；撤销 40 步，活动区域最多 60 个，保存的地图数据上限 8 MB。</p>
+          </li>
+          <li data-replay-on-hover>
+            <span class="ico ico--ink">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-draw pathLength="1" style="--at: 0ms" d="M5 4h14v16l-7-4-7 4z" />
+                <path data-pop style="--at: 380ms" pathLength="1" d="M9 9h6" />
+              </svg>
+            </span>
+            <h3 class="card__title">16 个后台页签</h3>
+            <p class="card__text">总览、集市设置、签到福利、兑换、铺面、黑市、样式、商品、道具目录、熔炉配方、NPC 对话、财务流水、玩家、素材、审计、关于。</p>
+          </li>
+          <li data-replay-on-hover>
+            <span class="ico ico--ink">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect data-draw pathLength="1" style="--at: 0ms" x="3.5" y="5" width="17" height="14" rx="2" />
+                <path data-draw pathLength="1" style="--at: 260ms" d="M3.5 10h17M9 5v14" />
+                <circle data-pop style="--at: 460ms" cx="15.5" cy="15" r="2" pathLength="1" />
+              </svg>
+            </span>
+            <h3 class="card__title">审计与流水</h3>
+            <p class="card__text">谁圈了哪块地、谁改了价、谁发放了金币都留痕，默认保留最近 800 条；金币流水按 20 种事由分类。</p>
+          </li>
+          <li data-replay-on-hover>
+            <span class="ico ico--ink">
+              <svg viewBox="0 0 24 24" class="draw" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse data-draw pathLength="1" style="--at: 0ms" cx="12" cy="6.5" rx="8" ry="3" />
+                <path data-draw pathLength="1" style="--at: 220ms" d="M4 6.5v11c0 1.7 3.6 3 8 3s8-1.3 8-3v-11" />
+                <path data-draw pathLength="1" style="--at: 420ms" d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+              </svg>
+            </span>
+            <h3 class="card__title">三种数据库</h3>
+            <p class="card__text">22 张表统一以 <span class="code">plugin_pixel_market_</span> 打头；函数、常量、CSS、JS 一律带 <span class="code">pixel_market_</span> 前缀，不跟别的插件抢名字。</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================ 散场清理 ============================ -->
+      <section class="section" id="cleaner" aria-labelledby="cleaner-title">
+        <div class="split">
+          <div class="split__copy">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__mark" aria-hidden="true">玖</span>
+              <span>散场也要扫干净</span>
+            </p>
+            <h2 class="h2" id="cleaner-title" data-reveal="text">配套的<em>残留清理</em>插件，一键扫回空地</h2>
+            <p class="lead" data-reveal="text">
+              删掉集市文件夹、同步插件之后，数据表、计划任务、素材覆盖目录、备份文件，
+              还有发给用户的通知（含未读计数）其实都留在站里。
+              <span class="term">集市残留清理</span> v1.0.2 在后台给一个清扫入口，把这些明确属于集市的残留一次删净。
+            </p>
+            <ul class="hud" data-reveal style="margin-top: var(--s-8)">
+              <li class="hud__row"><span class="hud__label">扫表</span><span class="hud__val">跨三种数据库 · 排除自身</span></li>
+              <li class="hud__row"><span class="hud__label">目录</span><span class="hud__val">递归统计文件数与字节</span></li>
+              <li class="hud__row"><span class="hud__label">通知</span><span class="hud__val">总数与未读一并修正</span></li>
+            </ul>
+          </div>
+
+          <div class="split__media">
+                        <div class="stage" id="scene-clean" data-scene data-reveal>
+              <div class="stage__bar">
+                <span class="stage__dot"></span><span class="stage__dot"></span><span class="stage__dot"></span>
+                <span class="stage__name">清扫前 → 空地</span>
+                <button class="stage__replay" type="button" data-replay="scene-clean">重播</button>
+              </div>
+              <svg viewBox="0 0 620 420" role="img" aria-label="动画演示：一把扫帚沿残留清单斜扫而下，数据表、素材覆盖目录、备份文件与用户通知被一行行扫掉，右边只剩一块空地">
+                <!-- 扫帚扫过的亮痕 -->
+                <path class="broomTrail" d="M74 158 L392 320" stroke="#f7c85a" stroke-width="30" stroke-linecap="round" fill="none" opacity="0" />
+
+                <g font-family="ui-monospace, Consolas, monospace" font-size="13">
+                  <g class="residue">
+                    <rect x="36" y="120" width="340" height="30" rx="6" fill="#fffdf7" stroke="rgba(40,28,18,.12)" />
+                    <text x="50" y="140" fill="#5b4a39">plugin_pixel_market_plots</text>
+                  </g>
+                  <g class="residue">
+                    <rect x="36" y="160" width="340" height="30" rx="6" fill="#fffdf7" stroke="rgba(40,28,18,.12)" />
+                    <text x="50" y="180" fill="#5b4a39">plugin_pixel_market_ledger</text>
+                  </g>
+                  <g class="residue">
+                    <rect x="36" y="200" width="340" height="30" rx="6" fill="#f6ecd2" stroke="rgba(179,131,31,.3)" />
+                    <text x="50" y="220" fill="#7d5a12">pixel_market_assets / 素材覆盖目录</text>
+                  </g>
+                  <g class="residue">
+                    <rect x="36" y="240" width="340" height="30" rx="6" fill="#f6ecd2" stroke="rgba(179,131,31,.3)" />
+                    <text x="50" y="260" fill="#7d5a12">plugin-backups/pixel_market-*.php</text>
+                  </g>
+                  <g class="residue">
+                    <rect x="36" y="280" width="340" height="30" rx="6" fill="#f7e5df" stroke="rgba(168,50,31,.24)" />
+                    <text x="50" y="300" fill="#8a2717">app_notifications kind='pixel_market'</text>
+                  </g>
+                </g>
+
+                <!-- 扫干净之后 -->
+                <g class="cleared">
+                  <rect x="440" y="120" width="144" height="190" rx="10" fill="#e9efdf" stroke="rgba(93,122,79,.3)" />
+                  <text x="512" y="224" text-anchor="middle" font-size="17" fill="#40573a" font-family="Kaiti SC, KaiTi, serif" letter-spacing="6">空 地</text>
+                  <path d="M476 246h72" stroke="#5d7a4f" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+                </g>
+
+                <!-- 灰尘 -->
+                <g fill="rgba(40,28,18,.3)">
+                  <rect class="dust" x="120" y="200" width="8" height="8" rx="2" />
+                  <rect class="dust" x="200" y="238" width="6" height="6" rx="2" />
+                  <rect class="dust" x="268" y="262" width="7" height="7" rx="2" />
+                  <rect class="dust" x="330" y="296" width="6" height="6" rx="2" />
+                </g>
+
+                <!-- 扫帚：saoba.png，刷头底部对齐组原点 -->
+                <g class="broom">
+                  <image href="./assets/img/saoba.png" x="-46" y="-136" width="92" height="140" />
+                </g>
+
+                <text x="36" y="366" font-size="12.5" fill="#94866f">数据表、计划任务、素材覆盖目录、备份文件与发给用户的通知（含未读计数）——一次扫净。</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 安装与仓库 ============================ -->
+      <section class="section" id="install" aria-labelledby="install-title">
+        <header class="section__head">
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__mark" aria-hidden="true">拾</span>
+            <span>装一台集市</span>
+          </p>
+          <h2 class="h2" id="install-title" data-reveal="text">三步装好，<em>明早开市</em></h2>
+          <p class="lead" data-reveal="text">
+            插件是一个文件夹，里头一份 <span class="code">plugin.php</span> 加一目录素材。
+            下载、放进插件目录、同步插件，剩下的都在后台点。
+          </p>
+        </header>
+
+        <div class="split">
+          <div class="split__copy" data-reveal>
+            <ol class="steps">
+              <li>
+                <h4>下载插件包</h4>
+                <p>从 GitHub Releases 取 <span class="code">jishi.zip</span>，或到仓库页浏览源码。包内已含 122 项素材与两段音乐。</p>
+              </li>
+              <li>
+                <h4>放进插件目录</h4>
+                <p>解压得到 <span class="code">pixel_market/</span>，整目录放进站点的插件目录；想连散场清理一起装，就再放一个 <span class="code">pixel_market_cleaner/</span>。</p>
+              </li>
+              <li>
+                <h4>同步插件</h4>
+                <p>在站点后台同步一次，22 张 <span class="code">plugin_pixel_market_</span> 表自动建好，侧栏与搜索框右侧同时出现「集市」入口。</p>
+              </li>
+              <li>
+                <h4>画地图，开市</h4>
+                <p>进后台「集市设置」载入模板或自定义地图——地皮满 64 格、物件至少 1 个，保存那一刻集市自动开张。</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="split__media">
+            <div class="frame frame--wood frame--join repo" data-reveal>
+              <div class="repo__head">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+                </svg>
+                <div>
+                  <p class="repo__name">fdhrthrth / pixel_market</p>
+                  <p class="repo__desc">集市-online · 论坛内嵌的宋代市井风集市经营小游戏</p>
+                </div>
+              </div>
+
+              <dl class="repo__facts">
+                <div><dt>作者</dt><dd>dcve</dd></div>
+                <div><dt>程序版本</dt><dd>1.2.0</dd></div>
+                <div><dt>发布包</dt><dd>jishi.zip</dd></div>
+                <div><dt>主体</dt><dd>1 个 PHP 文件</dd></div>
+                <div><dt>素材</dt><dd>122 项 · 约 8.9 MB</dd></div>
+                <div><dt>数据库</dt><dd>SQLite / MySQL / PG</dd></div>
+              </dl>
+
+              <div class="repo__actions">
+                <a class="btn btn--primary" href="https://github.com/fdhrthrth/pixel_market/releases/download/v1.2.0/jishi.zip">
+                  <span class="btn__ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" />
+                      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                    </svg>
+                  </span>
+                  下载 jishi.zip
+                </a>
+                <a class="btn btn--ghost" href="https://github.com/fdhrthrth/pixel_market" target="_blank" rel="noreferrer noopener">浏览仓库</a>
+              </div>
+
+              <p class="repo__tip">
+                想换素材：在后台「素材管理」打包上传，或在数据目录的覆盖层里放同名 PNG，白名单会告诉你哪一项没就位。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ FAQ ============================ -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="faq__layout">
+          <header class="faq__head">
+            <p class="eyebrow" data-reveal>
+              <span class="eyebrow__mark" aria-hidden="true">拾壹</span>
+              <span>常见问题</span>
+            </p>
+            <h2 class="h2" id="faq-title" data-reveal="text">开张前先<em>问清楚</em></h2>
+            <p class="lead" data-reveal="text" style="margin-inline: 0; text-align: left">
+              装法、数据、性能、素材替换——站长最关心的四件事，先答在这儿。
+            </p>
+          </header>
+
+          <div class="faq__list">
+            <details class="faq__item" open data-reveal>
+              <summary><span class="faq__q">集市和论坛是什么关系？会另开一套账号吗？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>不会。集市是内嵌在论坛里的一个插件页，入口有三处：侧栏「快捷功能」、搜索框右侧的「集市」按钮、管理员菜单里的「集市管理」。玩家身份直接沿用站点用户名，首次进入只补一个性别选项。</p>
+                <p>站点管理员默认即村长，不需要再在集市里申请一次权限。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">积分和金币怎么换？会不会把论坛的积分体系冲垮？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>兑换走固定通道：基准 1 金币 = 10 积分，玩家买入价至少比卖出价高 4%，快捷兑换每天 200 金币封顶（设为 0 就干脆隐藏按钮），信用社柜台才不受这个额度限制。行情还可以按 ±5% 每日波动。</p>
+                <p><span class="term">交子铺</span>的条款同样写在后台：定期存帖默认 7 天 0.5%、30 天 0.8%，最低存 100 金币、最多同时持有 3 张存帖，提前支取按 0.1% 活期算。青苗贷日息 1.5%，额度随在租铺位的等级水涨船高，逾期每日 3% 罚息、宽限 3 天。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">地图能画多大？会不会卡？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>边长 8 到 200 格，一格 64 设计像素；地图物件硬上限 2000，后台默认收到 800。</p>
+                <p>地面按 8×8 格区块做离屏缓存，改动才重绘；渲染只处理视口内的格子；碰撞是物件级的矩形与圆形盒，不是整图检测。寻路用八向 A* 并防切角，游荡 NPC 错峰计算路径，每帧只放一个。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">不喜欢某间铺面的样子，能换图吗？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>能。插件里维护着一份 122 项的素材白名单（键 → 分类 / 文件 / 类型），站点在数据目录的同名覆盖层里放一张同名 PNG 就能替换，不用动代码；后台「素材管理」会列出每一项的就位状态与大小，也支持打包上传。</p>
+                <p>不想要的样式可以整类停用——比如默认停用的近代元素理发摊。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">买过的卡片内容，店主事后改了买家还看得到吗？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>看得到当时那一版。购买瞬间会把标题、徽章与正文各存一份快照，与店主后续修改解耦；限购计数连软删记录一起算，防止反复上架绕额度。</p>
+                <p>未购买的路径上，查询语句里根本不取正文字段——这是注释里写明的防泄露红线。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">支持哪些数据库？表名会不会撞？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>SQLite、MySQL、PostgreSQL 三种驱动共用一套读写；22 张表全部以 <span class="code">plugin_pixel_market_</span> 打头，函数、常量、CSS、JS 也统一带 <span class="code">pixel_market_</span> 前缀。</p>
+                <p>兑换与购买这类涉及钱的操作在同一事务里提交，固定锁序，MySQL / PostgreSQL 用 <span class="code">FOR UPDATE</span>，SQLite 靠 <span class="code">BEGIN IMMEDIATE</span>。</p>
+              </div>
+            </details>
+
+            <details class="faq__item" data-reveal>
+              <summary><span class="faq__q">不想要了，怎么干净卸载？</span><span class="faq__toggle" aria-hidden="true"></span></summary>
+              <div class="faq__a">
+                <p>删插件文件夹、同步插件之后，再装一次配套的 <span class="term">集市残留清理</span>：它在后台列出遗留的数据表、计划任务、素材覆盖目录、备份文件和发给用户的通知，一键清扫，顺带修正未读计数。</p>
+                <p>清理插件只认明确属于集市的对象；它自己的表以 <span class="code">plugin_pixel_market_cleaner_</span> 打头，扫表时会跳过。</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 终版 CTA ============================ -->
+      <section class="cta" id="get" aria-labelledby="cta-title">
+        <div class="cta__panel frame frame--wood frame--join" data-reveal>
+          <img class="cta__bg" src="./assets/img/chanpin.png" alt="" aria-hidden="true" />
+          <span class="cta__dither" aria-hidden="true"></span>
+          <span class="cta__wash" aria-hidden="true"></span>
+          <div class="cta__copy">
+            <h2 class="h2" id="cta-title" data-reveal="text">明日辰时，<em>准时开市</em></h2>
+            <p class="lead">下载 <span class="code">jishi.zip</span>，放进插件目录，同步插件，画一张地图——你的集市就开张了。</p>
+            <div class="cta__actions">
+              <a class="btn btn--primary" href="https://github.com/fdhrthrth/pixel_market/releases/download/v1.2.0/jishi.zip">
+                <span class="btn__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" />
+                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                  </svg>
+                </span>
+                下载 jishi.zip
+              </a>
+              <a class="btn btn--ghost" href="https://github.com/fdhrthrth/pixel_market" target="_blank" rel="noreferrer noopener">
+                <span class="btn__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+                  </svg>
+                </span>
+                GitHub 仓库
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================ 页脚 ============================ -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a class="brand" href="#top">
+            <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="#a8321f" />
+              <path d="M8 12h16M16 8v6" stroke="#fdf6e8" stroke-width="2.4" stroke-linecap="round" />
+              <path d="M9 19h14l-2 6H11z" fill="#f0c86a" />
+              <path d="M16 19v6" stroke="#a8321f" stroke-width="1.6" />
+            </svg>
+            <span class="brand__name">集市-online</span>
+          </a>
+          <p>一款乡土中国版的集市经营插件。瓦片地图、木框羊皮纸界面、交子铺与村长后台，全部跑在你自己的站上。作者 dcve。</p>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-5)">
+            <span class="tag tag--red">v1.2.0</span>
+            <span class="tag">单文件插件</span>
+            <span class="tag">想暴富，先租铺</span>
+          </div>
+        </div>
+
+        <div>
+          <h5>集市里</h5>
+          <ul>
+            <li><a href="#map">瓦片地图</a></li>
+            <li><a href="#play">四步开张</a></li>
+            <li><a href="#economy">钱法</a></li>
+            <li><a href="#plots">铺位与货架</a></li>
+            <li><a href="#biz">熔炉与黑市</a></li>
+            <li><a href="#npc">街坊与声息</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>站长看</h5>
+          <ul>
+            <li><a href="#village">村长后台</a></li>
+            <li><a href="#cleaner">残留清理</a></li>
+            <li><a href="#faq">数据库支持</a></li>
+            <li><a href="#faq">素材覆盖层</a></li>
+            <li><a href="#faq">性能与寻路</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>拿走</h5>
+          <ul>
+            <li><a href="https://github.com/fdhrthrth/pixel_market/releases/download/v1.2.0/jishi.zip">下载 jishi.zip</a></li>
+            <li><a href="https://github.com/fdhrthrth/pixel_market" target="_blank" rel="noreferrer noopener">GitHub 仓库</a></li>
+            <li><a href="#install">安装四步</a></li>
+            <li><a href="#faq">卸载与清理</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>行话</h5>
+          <ul>
+            <li><a href="#play">圈地出租</a></li>
+            <li><a href="#economy">交子铺</a></li>
+            <li><a href="#economy">青苗贷</a></li>
+            <li><a href="#plots">样式库</a></li>
+            <li><a href="#npc">散集</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__base">
+        <span>集市-online · 宋代市井风集市经营插件</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span>本页所有像素图均为原创</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span>辰时开市，亥时散集</span>
+        <span class="footer__more">更多请关注 <a href="https://zero01.cyou/" target="_blank" rel="noreferrer noopener">zero01.cyou</a></span>
+      </div>
+    </footer>
+
+    <button class="to-top" type="button" aria-label="回到顶部">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V6" />
+        <path d="m5.5 12.5 6.5-6.5 6.5 6.5" />
+      </svg>
+    </button>
+
+    <script src="./assets/js/gallery-data.js"></script>
+    <script src="./assets/js/site.js"></script>
+  </body>
+</html>

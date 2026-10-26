@@ -1,0 +1,62 @@
+{
+    "version": 3,
+    "wander": [
+        {
+            "key": "npc_porter",
+            "sheet": "npc_porter_sheet",
+            "face": "npc_porter_face",
+            "name": "货郎",
+            "speed": 34
+        },
+        {
+            "key": "npc_vendor",
+            "sheet": "npc_vendor_sheet",
+            "face": "npc_vendor_face",
+            "name": "摊主",
+            "speed": 30
+        },
+        {
+            "key": "npc_woman",
+            "sheet": "npc_woman_sheet",
+            "face": "npc_woman_face",
+            "name": "挎篮妇人",
+            "speed": 30
+        },
+        {
+            "key": "npc_child",
+            "sheet": "npc_child_sheet",
+            "face": "npc_child_face",
+            "name": "顽童",
+            "speed": 46
+        },
+        {
+            "key": "npc_elder",
+            "sheet": "npc_elder_sheet",
+            "face": "npc_elder_face",
+            "name": "老丈",
+            "speed": 26
+        }
+    ],
+    "animals_wander": [
+        {
+            "key": "animal_dog",
+            "sheet": "animal_dog_sheet",
+            "name": "黄狗",
+            "speed": 42,
+            "h": 72
+        },
+        {
+            "key": "animal_goose",
+            "sheet": "animal_goose_sheet",
+            "name": "白鹅",
+            "speed": 22,
+            "frames": 2,
+            "rows": 1,
+            "static": true
+        }
+    ],
+    "face": {
+        "npc_banker_face": "信用社掌柜",
+        "npc_clerk_face": "村委会主事"
+    }
+}
